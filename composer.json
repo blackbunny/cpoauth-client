@@ -1,0 +1,12 @@
+{
+    "name": "zeitnot/cp_oauth_client",
+    "authors": [
+        {
+            "name": "Mehmet Yıldız",
+            "email": "mehmet.iu@gmail.com"
+        }
+    ],
+    "require": {
+
+    }
+}

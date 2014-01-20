@@ -69,7 +69,7 @@ Class Client{
         
         $result = curl_exec($this->curl);
         
-        return json_encode($result);
+        return $result;
     }
     
     public function requestResource($resource){
@@ -86,7 +86,7 @@ Class Client{
         
         $result = curl_exec($this->curl);
         
-        return json_encode($result);
+        return $result;
     }
 
 

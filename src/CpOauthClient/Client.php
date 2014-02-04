@@ -154,6 +154,31 @@ Class Client{
     }
 
     public function getAccess_token() {
+        
+        if (empty($this->access_token)){
+            curl_setopt($this->curl, CURLOPT_URL, $this->access_token_url);
+            curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($this->curl, CURLOPT_POST, true);
+            curl_setopt($this->curl, CURLOPT_POSTFIELDS, array(
+                "grant_type" => "client_credentials",
+                "client_id" => $this->client_id,
+                "client_secret" => $this->client_secret
+    
+            ));
+            curl_setopt($this->curl, CURLOPT_HTTPHEADER, array(
+                 "Accept: application/json",
+            )); 
+            
+            $result = curl_exec($this->curl);
+            
+            $result = json_decode($result);
+            
+            if (isset($result->access_token)){
+                $this->access_token = $result->access_token;
+            }else{
+                $this->access_token = $result;
+            }
+        }
         return $this->access_token;
     }
 

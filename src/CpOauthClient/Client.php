@@ -72,13 +72,17 @@ Class Client{
         return $result;
     }
     
-    public function requestResource($resource){
-        
+    public function requestResource($resource, $method = "GET", $params = array()){
         $link = $this->api_url.$resource;
         
         curl_setopt($this->curl, CURLOPT_URL, $link);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($this->curl, CURLOPT_POST, false);
+        curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
+        if (count($params) > 1) {
+            curl_setopt($this->curl, CURLOPT_POST, true);
+            curl_setopt($this->curl, CURLOPT_POSTFIELDS, $params);
+        }
+
         curl_setopt($this->curl, CURLOPT_HTTPHEADER, array(
              "Accept: application/json",
              "Authorization: Bearer ".$this->access_token

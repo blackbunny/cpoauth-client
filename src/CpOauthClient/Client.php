@@ -79,7 +79,6 @@ Class Client{
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
         if (count($params) > 1) {
-            curl_setopt($this->curl, CURLOPT_POST, true);
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, $params);
         }
 
